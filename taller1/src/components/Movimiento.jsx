@@ -17,7 +17,7 @@ const Movimiento = (props) => {
 
           <div className='d-inline mx-3'>
             {props.movimiento.nombre}
-            <div className='d-inline mx-3 bg-success text-white rounded-pill'>
+            <div className={`d-inline mx-3 ${props.movimiento.tipoMovimiento === 'ingreso' ? `bg-success`: `bg-danger`} text-white rounded-pill`}>
               {props.movimiento.cantidad}
             </div>
             

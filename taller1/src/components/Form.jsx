@@ -6,6 +6,8 @@ const Form = (props) => {
 
     const [errorNombreMessage, setErrorNombreMessage] = useState(false);
 
+    const [errorTipoMovimientoMessage, setErrorTipoMovimientoMessage] = useState(false);
+
     const [errorCantidadMessage, setErrorCantidadMessage] = useState(false);
 
     const [frmState, setFrmState] = useState({movimiento: '', nombre: '', cantidad: Number});
@@ -14,6 +16,7 @@ const Form = (props) => {
         setFrmState({...frmState, [target.name]: target.value});
         setErrorNombreMessage(false);
         setErrorCantidadMessage(false);
+        setErrorTipoMovimientoMessage(false);
     }
 
     const cancelar = (e) => {
@@ -23,13 +26,14 @@ const Form = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(frmState.nombre.length > 0 && frmState.cantidad > 0){
-            const newRegistro = {id: uuidv4, nombre: frmState.nombre, cantidad: frmState.cantidad, 
+        console.log(frmState.movimiento)
+        if(frmState.nombre.length > 0 && frmState.cantidad > 0 && frmState.movimiento.length > 0){
+            const newRegistro = {id: uuidv4(), nombre: frmState.nombre, cantidad: frmState.cantidad, 
             tipoMovimiento: frmState.movimiento};
             console.log(newRegistro);
             props.setMovimientos([...props.movimientos, newRegistro]);
             e.target.reset();
-            setFrmState({nombre: '', cantidad: Number});
+            setFrmState({nombre: '', cantidad: Number, movimiento: ''});
             return;
         }
 
@@ -38,6 +42,11 @@ const Form = (props) => {
             return;
         }
         
+        if(frmState.movimiento.length === 0){
+            setErrorTipoMovimientoMessage(true);
+            return;
+        }
+
         setErrorCantidadMessage(true);
     }
 
@@ -51,6 +60,9 @@ const Form = (props) => {
                     <option value="ingreso">Ingreso</option>
                     <option value="gasto">Gasto</option>
                 </select>
+                <span>
+                    {errorTipoMovimientoMessage ? 'Seleccione un tipo de movimiento' : ''}
+                </span>
             </div>
             <div className='form-group mt-2'>
                 <label>Nombre</label>

@@ -12,7 +12,10 @@ function App() {
 
   return (
     <div className='container mt-5'>
-      <Header logo= {logo}/>
+      <Header 
+        logo= {logo}
+        movimientos= {movimientos}
+      />
       <div className="flex-row">
         <div className="flex-large">
           <h2>Registro</h2>
