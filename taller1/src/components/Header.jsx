@@ -14,10 +14,15 @@ const Header = ({logo, movimientos}) => {
           <span className='nav-item'>
             <div>
               <label className='text-white'>Saldo inicial: </label>
-              <br />
               <div className='d-inline'>
                 <FcMoneyTransfer />
                 <p className='text-white d-inline mx-2'>10000000</p>
+              </div>
+
+              <label className='text-white'>Saldo Final: </label>
+              <div className='d-inline'>
+                <FcMoneyTransfer />
+                <p className='text-white d-inline mx-2'>17000000</p>
               </div>
             </div>
           </span>
