@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
@@ -12,7 +12,7 @@ const Form = (props) => {
   const [frmState, setFrmState] = useState({
     movimiento: "",
     nombre: "",
-    cantidad: Number,
+    cantidad: Number
   });
 
   const onChange = ({ target }) => {
@@ -29,7 +29,6 @@ const Form = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(frmState.movimiento);
     if (
       frmState.nombre.length > 0 &&
       frmState.cantidad > 0 &&
@@ -41,7 +40,21 @@ const Form = (props) => {
         cantidad: frmState.cantidad,
         tipoMovimiento: frmState.movimiento,
       };
-      console.log(newRegistro);
+
+      if(frmState.movimiento === 'ingreso'){
+        props.setSaldoFinal(Number(props.saldoFinal) + Number(frmState.cantidad));
+      }
+
+      if(frmState.movimiento === 'gasto'){
+        if(props.saldoFinal - frmState.cantidad < 0 ){
+            props.openModal();
+            e.target.reset();
+            setFrmState({ nombre: "", cantidad: Number, movimiento: "" });
+            return;
+        }
+        props.setSaldoFinal(props.saldoFinal - frmState.cantidad);
+      }
+
       props.setMovimientos([...props.movimientos, newRegistro]);
       e.target.reset();
       setFrmState({ nombre: "", cantidad: Number, movimiento: "" });
@@ -66,9 +79,7 @@ const Form = (props) => {
       <div className="form-group mt-2">
         <label>Tipo Movimiento</label>
         <select onChange={onChange} name="movimiento" className="form-select">
-          <option default>
-            ---
-          </option>
+          <option default>---</option>
           <option value="ingreso">Ingreso</option>
           <option value="gasto">Gasto</option>
         </select>

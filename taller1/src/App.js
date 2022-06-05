@@ -1,20 +1,33 @@
 import Header from "./components/Header"
 import Form from "./components/Form";
 import ListaMovimientos from "./components/ListaMovimientos";
-import logo from './assets/logoPoli.png'
+import ModalGasto from "./components/ModalGasto";
 import { useState } from "react";
 
 function App() {
 
-  const [registro, setRegistro] = useState('');
   const [movimientos, setMovimientos] = useState([]);
-  const [edit, setEdit] = useState(null);
+
+  const saldoInicial = 10000000;
+
+  const [saldoFinal, setSaldoFinal] = useState(saldoInicial);
+
+  const [errorGasto, setErrorGasto] = useState(false);
+
+  const openModal = () => {
+    setErrorGasto(true);
+  }
+
+  const closeModal = () => {
+    setErrorGasto(false);
+  }
 
   return (
     <div className='container mt-5'>
       <Header 
-        logo= {logo}
         movimientos= {movimientos}
+        saldoInicial= {saldoInicial}
+        saldoFinal= {saldoFinal}
       />
       <div className="flex-row">
         <div className="flex-large">
@@ -22,13 +35,17 @@ function App() {
           <Form 
             movimientos= {movimientos}
             setMovimientos= {setMovimientos}
+            saldoFinal= {saldoFinal}
+            setSaldoFinal= {setSaldoFinal}
+            openModal= {openModal}
           />
         </div>
         <div className="flex-large">
-          <h2>Movimientos</h2>
+          <h2>Lista Movimientos</h2>
           <ListaMovimientos movimientos={movimientos} setMovimientos= {setMovimientos} />
         </div>
       </div>
+      <ModalGasto errorGasto={errorGasto} closeModal={closeModal}/>      
     </div>
   );
 }

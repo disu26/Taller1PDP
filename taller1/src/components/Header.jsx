@@ -1,12 +1,12 @@
 import React from 'react'
 import { FcMoneyTransfer } from "react-icons/fc";
 
-const Header = ({logo, movimientos}) => {
+const Header = ({ movimientos, saldoInicial, saldoFinal }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <span className='navbar-brand mx-2'>
-            <img src = {logo} width = '30' height = '30' className='d-inline-block align-top' alt='logo'/>
+            <img src = 'https://d3q0kt5yih1b7n.cloudfront.net/organizations/covers/politecnico-jaime-isaza-cadavid_4716001832.jpg' width = '30' height = '30' className='d-inline-block align-top' alt='logo'/>
             Taller 1 DASH-MARS
         </span>
 
@@ -14,15 +14,15 @@ const Header = ({logo, movimientos}) => {
           <span className='nav-item'>
             <div>
               <label className='text-white'>Saldo inicial: </label>
-              <div className='d-inline'>
+              <div className='d-inline mx-2'>
                 <FcMoneyTransfer />
-                <p className='text-white d-inline mx-2'>10000000</p>
+                <p className='text-white d-inline mx-2'>{saldoInicial}</p>
               </div>
 
               <label className='text-white'>Saldo Final: </label>
-              <div className='d-inline'>
+              <div className='d-inline mx-2'>
                 <FcMoneyTransfer />
-                <p className='text-white d-inline mx-2'>17000000</p>
+                <p className='text-white d-inline mx-2'>{saldoFinal}</p>
               </div>
             </div>
           </span>

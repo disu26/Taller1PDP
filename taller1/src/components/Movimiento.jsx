@@ -4,7 +4,7 @@ import { GiPencil } from "react-icons/gi";
 
 const Movimiento = (props) => {
   return (
-    <ul className='list-group'>
+    <ul className='list-group mt-3'>
       <li className='list-group-item'>
           <div className='d-inline'>
             <button className='btn btn-secondary mx-2'>
