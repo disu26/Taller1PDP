@@ -1,5 +1,6 @@
 import Header from "./components/Header"
 import Form from "./components/Form";
+import ListaMovimientos from "./components/ListaMovimientos";
 import logo from './assets/logoPoli.png'
 import { useState } from "react";
 
@@ -22,6 +23,7 @@ function App() {
         </div>
         <div className="flex-large">
           <h2>Movimientos</h2>
+          <ListaMovimientos movimientos={movimientos} setMovimientos= {setMovimientos} />
         </div>
       </div>
     </div>
