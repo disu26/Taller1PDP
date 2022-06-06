@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
@@ -15,36 +15,20 @@ const Form = (props) => {
     cantidad: Number
   });
 
-  const { edit, setRegistro} = props;
-  useEffect(() => {
-      console.log(edit)
-      if(edit){
-        setRegistro(edit.value);
-      } else {
-        setRegistro('');
-      }
-  }, [edit, setRegistro]);
-
   const onChange = ({ target }) => {
     setFrmState({ ...frmState, [target.name]: target.value });
-    props.setRegistro(frmState);
     setErrorNombreMessage(false);
     setErrorCantidadMessage(false);
     setErrorTipoMovimientoMessage(false);
   };
   const cancelar = (e) => {
-    e.preventDefault();
+   e.preventDefault();
    document.getElementById('myform').reset();
-    // document.getElementsByTagName("form").reset();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (frmState.nombre.length > 0 && frmState.cantidad > 0 && frmState.movimiento.length > 0) {
-        if(props.edit){
-            updateMovimiento(edit.id, props.registro)
-            return;
-        }
 
         const newRegistro = {
             id: uuidv4(),
@@ -87,14 +71,6 @@ const Form = (props) => {
     setErrorCantidadMessage(true);
   };
 
-  const updateMovimiento = (id, nombre, cantidad, movimiento) => {
-      const newMovimientos = props.movimientos.map((item) => 
-        item.id === id ? { id, nombre, cantidad, movimiento } : item
-      );
-      props.setMovimientos(newMovimientos);
-      props.setEdit(null);
-  }
-
   return (
     <form onSubmit={handleSubmit} id="myform">
       <div className="form-group mt-2">
@@ -110,7 +86,6 @@ const Form = (props) => {
       </div>
       <div className="form-group mt-2">
         <label>Nombre</label>
-        {console.log(props.registro)}
         <input
           type="text"
           name="nombre"
@@ -138,7 +113,7 @@ const Form = (props) => {
           Cancelar
         </button>
         <button type="submit" className="btn btn-primary">
-          {props.edit ? "Guardar Cambios" : 'Agregar Movimiento'}
+          Agregar Movimiento
         </button>
       </div>
     </form>
