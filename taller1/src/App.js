@@ -1,7 +1,6 @@
 import Header from "./components/Header"
 import Form from "./components/Form";
 import ListaMovimientos from "./components/ListaMovimientos";
-import ModalGasto from "./components/ModalGasto";
 import { useState } from "react";
 
 function App() {
@@ -45,7 +44,6 @@ function App() {
           <ListaMovimientos movimientos={movimientos} setMovimientos= {setMovimientos} />
         </div>
       </div>
-      <ModalGasto errorGasto={errorGasto} closeModal={closeModal}/>      
     </div>
   );
 }
