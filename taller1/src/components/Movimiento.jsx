@@ -13,7 +13,7 @@ const Movimiento = (props) => {
             <button className='btn btn-secondary mx-2' onClick={() => props.deleteMovimiento(props.movimiento)}>
               <FcCancel />
             </button>
-            <button className='btn btn-secondary mx-2'>
+            <button className='btn btn-secondary mx-2' onClick={() => props.setEdit(props.movimiento)}>
               <GiPencil />
             </button>
           </div>
