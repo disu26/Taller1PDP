@@ -40,7 +40,7 @@ const ListaMovimientos = (props) => {
                 key={movimiento.id}
                 movimiento={movimiento}
                 deleteMovimiento={deleteMovimiento}
-                setEdit={props.setEdit}
+                editRow={props.editRow}
             />
         ))}
     </div>
