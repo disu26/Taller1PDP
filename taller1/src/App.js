@@ -3,9 +3,12 @@ import Form from "./components/Form";
 import EditForm from "./components/EditForm";
 import ListaMovimientos from "./components/ListaMovimientos";
 import ModalGasto from "./components/ModalGasto";
+import ModalIngreso from "./components/ModalIngreso";
 import { useState } from "react";
 
 function App() {
+
+  const [registros, setRegistros] = useState([]);
 
   const [registro, setRegistro] = useState("");
 
@@ -23,6 +26,8 @@ function App() {
 
   const [errorGasto, setErrorGasto] = useState(false);
 
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+
   const updateMovimiento = (id, updateMovimiento) => {
     setMovimientos(movimientos.map((item) => item.id === id ? updateMovimiento : item));
 
@@ -36,13 +41,23 @@ function App() {
       tipoMovimiento: movimiento.tipoMovimiento
     });
   }
-
+  
   const openModal = () => {
     setErrorGasto(true);
   }
 
   const closeModal = () => {
     setErrorGasto(false);
+  }
+
+  const openModalRegistro = (newRegistro) => {
+    setRegistroExitoso(true);
+    setRegistros(newRegistro);
+    
+  }
+
+  const closeModalRegistro = () => {
+    setRegistroExitoso(false);
   }
 
   return (
@@ -63,6 +78,7 @@ function App() {
                   saldoFinal= {saldoFinal}
                   setSaldoFinal= {setSaldoFinal}
                   openModal= {openModal}
+                  openModalRegistro={openModalRegistro}
                 />
               </div>
             ) : (
@@ -81,7 +97,6 @@ function App() {
               </div>
             )
           }
-          
         </div>
         <div className="flex-large">
           <h2>Lista Movimientos</h2>
@@ -93,6 +108,8 @@ function App() {
         </div>
       </div>
       <ModalGasto errorGasto={errorGasto} closeModal={closeModal}/>      
+      <ModalIngreso registroExitoso={registroExitoso} closeModalRegistro={closeModalRegistro} registros={registros} />
+
     </div>
   );
 }
