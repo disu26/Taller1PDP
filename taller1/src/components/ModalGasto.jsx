@@ -1,24 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import ButtonCloseModal from './ButtonCloseModal';
 import {
     Modal,
     ModalHeader,
-    ModalBody,
-    Button
+    ModalBody
 } from 'reactstrap';
 
-const ModalGasto = ({ errorGasto }) => {
-    const [open, setOpen] = useState(errorGasto);
+const ModalGasto = ({ errorGasto, closeModal }) => {
 
-    const closeModal = () => setOpen(false);
-    
   return (
-    <Modal isOpen={open}>
+    <Modal isOpen={errorGasto}>
         <ModalHeader>
             <div><h3>Error</h3></div>
         </ModalHeader>
         <ModalBody>
             No cuenta con saldo suficiente para realizar este movimiento
-            <Button className='mt-2 float-end' variant='secondary' onClick={closeModal()}>Close</Button>
+            <ButtonCloseModal closeModal={closeModal}/>
         </ModalBody>
     </Modal>
   )

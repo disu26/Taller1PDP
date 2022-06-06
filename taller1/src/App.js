@@ -8,7 +8,7 @@ function App() {
 
   const [movimientos, setMovimientos] = useState([]);
 
-  const saldoInicial = 10000000;
+  const saldoInicial = 5;
 
   const [saldoFinal, setSaldoFinal] = useState(saldoInicial);
 

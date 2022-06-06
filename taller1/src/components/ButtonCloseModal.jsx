@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button } from 'reactstrap';
 
-const ButtonCloseModal = () => {
+const ButtonCloseModal = ({closeModal}) => {
+    const [close, setClose] = useState(false);
+
+    useEffect(() => {
+      closeModal()
+    }, [close]);
+
   return (
-    <div>ButtonCloseModal</div>
+    <Button className='mt-2 float-end' variant='secondary' onClick={() => setClose(true)}>Close</Button>
   )
 }
 
