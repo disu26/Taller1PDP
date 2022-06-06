@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function App() {
 
-  const [registros, setRegistros] = useState(null);
+  const [registros, setRegistros] = useState([]);
 
   const [registro, setRegistro] = useState("");
 
