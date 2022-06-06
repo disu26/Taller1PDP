@@ -2,9 +2,12 @@ import Header from "./components/Header"
 import Form from "./components/Form";
 import ListaMovimientos from "./components/ListaMovimientos";
 import ModalGasto from "./components/ModalGasto";
+import ModalIngreso from "./components/ModalIngreso";
 import { useState } from "react";
 
 function App() {
+
+  const [registros, setRegistros] = useState(null);
 
   const [registro, setRegistro] = useState("");
 
@@ -18,12 +21,24 @@ function App() {
 
   const [errorGasto, setErrorGasto] = useState(false);
 
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+  
   const openModal = () => {
     setErrorGasto(true);
   }
 
   const closeModal = () => {
     setErrorGasto(false);
+  }
+
+  const openModalRegistro = (newRegistro) => {
+    setRegistroExitoso(true);
+    setRegistros(newRegistro);
+    
+  }
+
+  const closeModalRegistro = () => {
+    setRegistroExitoso(false);
   }
 
   return (
@@ -43,6 +58,7 @@ function App() {
             saldoFinal= {saldoFinal}
             setSaldoFinal= {setSaldoFinal}
             openModal= {openModal}
+            openModalRegistro={openModalRegistro}
             edit={edit}
             setEdit={setEdit}
           />
@@ -57,6 +73,8 @@ function App() {
         </div>
       </div>
       <ModalGasto errorGasto={errorGasto} closeModal={closeModal}/>      
+      <ModalIngreso registroExitoso={registroExitoso} closeModalRegistro={closeModalRegistro} registros={registros} />
+
     </div>
   );
 }

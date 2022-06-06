@@ -32,10 +32,10 @@ const Form = (props) => {
     setErrorCantidadMessage(false);
     setErrorTipoMovimientoMessage(false);
   };
-
   const cancelar = (e) => {
     e.preventDefault();
-    e.target.reset();
+   document.getElementById('myform').reset();
+    // document.getElementsByTagName("form").reset();
   };
 
   const handleSubmit = (e) => {
@@ -70,7 +70,7 @@ const Form = (props) => {
         props.setMovimientos([...props.movimientos, newRegistro]);
         e.target.reset();
         setFrmState({ nombre: "", cantidad: Number, movimiento: "" });
-        props.setRegistro("");
+        props.openModalRegistro(newRegistro);
         return;
     }
 
@@ -96,7 +96,7 @@ const Form = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="myform">
       <div className="form-group mt-2">
         <label>Tipo Movimiento</label>
         <select onChange={onChange} name="movimiento" className="form-select">
@@ -115,7 +115,6 @@ const Form = (props) => {
           type="text"
           name="nombre"
           className="form-control"
-          value={props.registro.nombre}
           onChange={onChange}
         />
         <span>
@@ -128,7 +127,6 @@ const Form = (props) => {
           type="number"
           name="cantidad"
           className="form-control"
-          value={props.registro.cantidad}
           onChange={onChange}
         />
         <span>
