@@ -1,7 +1,11 @@
 import React from 'react'
 import { FcMoneyTransfer } from "react-icons/fc";
 
-const Header = ({ movimientos, saldoInicial, saldoFinal }) => {
+const Header = ({ saldoInicial, saldoFinal }) => {
+
+  const saldoInicialFormateado = saldoInicial.toLocaleString("en");
+  
+  const saldoFinalFormateado = saldoFinal.toLocaleString("en");
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,13 +20,13 @@ const Header = ({ movimientos, saldoInicial, saldoFinal }) => {
               <label className='text-white'>Saldo inicial: </label>
               <div className='d-inline mx-2'>
                 <FcMoneyTransfer />
-                <p className='text-white d-inline mx-2'>{saldoInicial}</p>
+                <p className='text-white d-inline mx-2'>{saldoInicialFormateado}</p>
               </div>
 
               <label className='text-white'>Saldo Final: </label>
               <div className='d-inline mx-2'>
                 <FcMoneyTransfer />
-                <p className='text-white d-inline mx-2'>{saldoFinal}</p>
+                <p className='text-white d-inline mx-2'>{saldoFinalFormateado}</p>
               </div>
             </div>
           </span>

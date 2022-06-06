@@ -3,6 +3,12 @@ import Movimiento from './Movimiento'
 import { FcSearch } from 'react-icons/fc';
 
 const ListaMovimientos = (props) => {
+
+    const deleteMovimiento = (movimiento) => {
+        const newMovimientos = props.movimientos.filter((item) => item.id !== movimiento.id);
+        props.setMovimientos(newMovimientos);
+    };
+
   return (
     <div className='container'>
         <div className='input-group rounded'>
@@ -33,6 +39,7 @@ const ListaMovimientos = (props) => {
             <Movimiento
                 key={movimiento.id}
                 movimiento={movimiento}
+                deleteMovimiento={deleteMovimiento}
             />
         ))}
     </div>

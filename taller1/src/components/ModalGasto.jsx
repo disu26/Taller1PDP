@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import ButtonCloseModal from './ButtonCloseModal';
+import React from 'react'
 import {
     Modal,
     ModalHeader,
-    ModalBody
+    ModalBody,
+    Button
 } from 'reactstrap';
 
 const ModalGasto = ({ errorGasto, closeModal }) => {
@@ -15,10 +15,10 @@ const ModalGasto = ({ errorGasto, closeModal }) => {
         </ModalHeader>
         <ModalBody>
             No cuenta con saldo suficiente para realizar este movimiento
-            <ButtonCloseModal closeModal={closeModal}/>
+            <Button className='mt-2 float-end' variant='secondary' onClick={() => closeModal()}>Close</Button>
         </ModalBody>
     </Modal>
   )
 }
 
-export default ModalGasto
+export default ModalGasto;

@@ -8,7 +8,7 @@ function App() {
 
   const [movimientos, setMovimientos] = useState([]);
 
-  const saldoInicial = 5;
+  const saldoInicial = 10000000;
 
   const [saldoFinal, setSaldoFinal] = useState(saldoInicial);
 
@@ -25,7 +25,6 @@ function App() {
   return (
     <div className='container mt-5'>
       <Header 
-        movimientos= {movimientos}
         saldoInicial= {saldoInicial}
         saldoFinal= {saldoFinal}
       />
