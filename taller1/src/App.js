@@ -28,6 +28,26 @@ function App() {
 
   const [registroExitoso, setRegistroExitoso] = useState(false);
 
+  const [searchValue, setSearchValue] = useState(null);
+
+  let searchedMovimientos = [];
+
+  if(searchValue !== null){
+    searchedMovimientos = movimientos;
+  } else {
+    searchedMovimientos = movimientos.filter(item => {
+        const movimientoNombre = item.nombre.toLowerCase();
+        const searchNombre = searchValue.nombre.toLowerCase();
+        const movimientoTipo = item.tipoMovimiento;
+
+        if(searchValue.movimiento === 'todos'){
+          return movimientoNombre === searchNombre;
+        }
+
+        return movimientoNombre === searchNombre && movimientoTipo === searchValue.movimiento; 
+    })
+  }
+
   const updateMovimiento = (id, updateMovimiento) => {
     setMovimientos(movimientos.map((item) => item.id === id ? updateMovimiento : item));
 
@@ -105,7 +125,7 @@ function App() {
         <div className="flex-large">
           <h2>Lista Movimientos</h2>
           <ListaMovimientos 
-            movimientos={movimientos} 
+            searchedMovimientos={searchedMovimientos} 
             setMovimientos= {setMovimientos} 
             editRow={editRow}
           />
