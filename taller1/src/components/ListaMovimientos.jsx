@@ -25,14 +25,9 @@ const ListaMovimientos = (props) => {
     props.setSearchValue(frmState);
   }, [frmState])
 
-  const handleSubmit = (e) => {
-        e.preventDefault();
-        props.setSearchValue(frmState);
-  }
-
   return (
     <div className="container">
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <Row>
           <Col>
             <input
