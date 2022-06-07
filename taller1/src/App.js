@@ -4,7 +4,7 @@ import EditForm from "./components/EditForm";
 import ListaMovimientos from "./components/ListaMovimientos";
 import ModalGasto from "./components/ModalGasto";
 import ModalIngreso from "./components/ModalIngreso";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
 
@@ -30,23 +30,26 @@ function App() {
 
   const [searchValue, setSearchValue] = useState(null);
 
-  let searchedMovimientos = [];
+  const [searchedMovimientos, setSearchedMovimientos] = useState([]);
 
-  if(searchValue === null){
-    searchedMovimientos = movimientos;
-  } else {
-    searchedMovimientos = movimientos.filter(item => {
-        const movimientoNombre = item.nombre.toLowerCase();
-        const searchNombre = searchValue.nombre.toLowerCase();
-        const movimientoTipo = item.tipoMovimiento;
+  useEffect(() => {
+    if(searchValue === null){
+      setSearchedMovimientos(movimientos);
+    } else {
+      setSearchedMovimientos(movimientos.filter(item => {
+          const movimientoNombre = item.nombre.toLowerCase();
+          const searchNombre = searchValue.busqueda.toLowerCase();
+          const movimientoTipo = item.tipoMovimiento;
 
-        if(searchValue.movimiento === 'todos'){
-          return movimientoNombre === searchNombre;
-        }
+          if(searchValue.movimiento === 'todos'){
+            return movimientoNombre.includes(searchNombre);
+          }
 
-        return movimientoNombre === searchNombre && movimientoTipo === searchValue.movimiento; 
-    })
-  }
+          return movimientoNombre.includes(searchNombre) && movimientoTipo === searchValue.movimiento; 
+          })
+        )
+    }
+  }, [searchValue, movimientos])
 
   const updateMovimiento = (id, updateMovimiento) => {
     setMovimientos(movimientos.map((item) => item.id === id ? updateMovimiento : item));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Movimiento from "./Movimiento";
 import { FcSearch } from "react-icons/fc";
 import { Col, Form, Row } from "reactstrap";
@@ -19,14 +19,17 @@ const ListaMovimientos = (props) => {
 
   const onChange = ({ target }) => {
     setFrmState({ ...frmState, [target.name]: target.value });
+    console.log(frmState)
   }
 
+  useEffect(() => {
+    props.setSearchValue(frmState);
+  }, [frmState])
+
   const handleSubmit = (e) => {
+      console.log('submit')
         e.preventDefault();
-        
         props.setSearchValue(frmState);
-        e.target.reset();
-        setFrmState({ busqueda: '', movimiento: '' });
   }
 
   return (
