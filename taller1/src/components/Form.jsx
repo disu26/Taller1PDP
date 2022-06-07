@@ -53,6 +53,7 @@ const Form = (props) => {
 
         props.setMovimientos([...props.movimientos, newRegistro]);
         e.target.reset();
+        props.setContMovimientos(props.contMovimientos + 1);
         setFrmState({ nombre: "", cantidad: Number, movimiento: "" });
         props.openModalRegistro(newRegistro);
         return;

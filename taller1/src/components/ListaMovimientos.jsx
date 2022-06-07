@@ -7,7 +7,7 @@ const ListaMovimientos = (props) => {
 
     const [frmState, setFrmState] = useState({
         busqueda: '',
-        movimiento: ''
+        movimiento: 'todos'
     });
 
   const deleteMovimiento = (movimiento) => {
@@ -15,11 +15,11 @@ const ListaMovimientos = (props) => {
       (item) => item.id !== movimiento.id
     );
     props.setMovimientos(newMovimientos);
+    props.setContMovimientos(props.contMovimientos - 1)
   };
 
   const onChange = ({ target }) => {
     setFrmState({ ...frmState, [target.name]: target.value });
-    console.log(frmState)
   }
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const ListaMovimientos = (props) => {
   }, [frmState])
 
   const handleSubmit = (e) => {
-      console.log('submit')
         e.preventDefault();
         props.setSearchValue(frmState);
   }

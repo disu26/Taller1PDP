@@ -32,6 +32,8 @@ function App() {
 
   const [searchedMovimientos, setSearchedMovimientos] = useState([]);
 
+  const [contMovimientos, setContMovimientos] = useState(Number);
+
   useEffect(() => {
     if(searchValue === null){
       setSearchedMovimientos(movimientos);
@@ -104,6 +106,8 @@ function App() {
                   setSaldoFinal= {setSaldoFinal}
                   openModal= {openModal}
                   openModalRegistro={openModalRegistro}
+                  contMovimientos={contMovimientos}
+                  setContMovimientos={setContMovimientos}
                 />
               </div>
             ) : (
@@ -123,12 +127,21 @@ function App() {
                 />
               </div>
             )
-          }
+          } 
         </div>
         <div className="flex-large">
-          <h2>Lista Movimientos</h2>
+          <div>
+            <h2 className="d-inline">
+              Lista Movimientos
+              <span className="float-end rounded-pill bg-primary"> {contMovimientos}</span>
+            </h2>
+            
+          </div>
           <ListaMovimientos 
             searchedMovimientos={searchedMovimientos} 
+            movimientos={movimientos}
+            contMovimientos={contMovimientos}
+            setContMovimientos={setContMovimientos}
             setMovimientos= {setMovimientos} 
             editRow={editRow}
             setSearchValue={setSearchValue}
