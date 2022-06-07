@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Movimiento from "./Movimiento";
-import { FcSearch } from "react-icons/fc";
 import { Col, Form, Row } from "reactstrap";
 
 const ListaMovimientos = (props) => {
@@ -46,11 +45,6 @@ const ListaMovimientos = (props) => {
               name="busqueda"
               onChange={onChange}
             />
-          </Col>
-          <Col>
-            <button type="submit" className="btn btn-dark">
-              <FcSearch />
-            </button>
           </Col>
           <Col>
             <input
