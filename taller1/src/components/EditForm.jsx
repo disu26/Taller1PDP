@@ -23,7 +23,8 @@ const EditForm = (props) => {
 
     const cancelar = (e) => {
         e.preventDefault();
-        e.target.reset();
+        document.getElementById('myform').reset();
+        props.cancelarEditar();
     };
 
     const handleSubmit = (e) => {
@@ -62,7 +63,7 @@ const EditForm = (props) => {
         setErrorCantidadMessage(true);
     }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="myform">
       <div className="form-group mt-2">
         <label>Tipo Movimiento</label>
         <select onChange={onChange} name="movimiento" className="form-select">

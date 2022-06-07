@@ -8,8 +8,6 @@ import {
 
 const ModalIngreso = ({ registroExitoso, closeModalRegistro, registros }) => {
 
-  console.log(registros);
-
   return (
     <Modal isOpen={registroExitoso}>
         <ModalHeader>

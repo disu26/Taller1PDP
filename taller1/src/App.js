@@ -34,6 +34,8 @@ function App() {
     setEditing(false);
   }
 
+  const cancelarEditar = () => setEditing(false);
+
   const editRow = (movimiento) => {
     setEditing(true);
     setCurrentMovimiento({
@@ -91,6 +93,8 @@ function App() {
                   setMovimientos= {setMovimientos}
                   saldoFinal= {saldoFinal}
                   setSaldoFinal= {setSaldoFinal}
+                  openModal= {openModal}
+                  cancelarEditar={cancelarEditar}
                   currentMovimiento= {currentMovimiento}
                   updateMovimiento= {updateMovimiento}
                 />
