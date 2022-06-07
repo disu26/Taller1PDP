@@ -32,7 +32,7 @@ function App() {
 
   let searchedMovimientos = [];
 
-  if(searchValue !== null){
+  if(searchValue === null){
     searchedMovimientos = movimientos;
   } else {
     searchedMovimientos = movimientos.filter(item => {
@@ -128,6 +128,7 @@ function App() {
             searchedMovimientos={searchedMovimientos} 
             setMovimientos= {setMovimientos} 
             editRow={editRow}
+            setSearchValue={setSearchValue}
           />
         </div>
       </div>

@@ -4,6 +4,7 @@ import { FcSearch } from "react-icons/fc";
 import { Col, Form, Row } from "reactstrap";
 
 const ListaMovimientos = (props) => {
+
     const [frmState, setFrmState] = useState({
         busqueda: '',
         movimiento: ''
@@ -22,8 +23,10 @@ const ListaMovimientos = (props) => {
 
   const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(e.target);
+        
+        props.setSearchValue(frmState);
+        e.target.reset();
+        setFrmState({ busqueda: '', movimiento: '' });
   }
 
   return (
@@ -82,7 +85,7 @@ const ListaMovimientos = (props) => {
           </Col>
         </Row>
       </Form>
-      {props.movimientos.map((movimiento) => (
+      {props.searchedMovimientos.map((movimiento) => (
         <Movimiento
           key={movimiento.id}
           movimiento={movimiento}
